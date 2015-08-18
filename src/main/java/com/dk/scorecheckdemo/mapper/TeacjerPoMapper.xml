@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.TeacjerPoMapper" >
+  <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.TeacjerPo" >
+    <id column="tch_id" property="tchId" jdbcType="VARCHAR" />
+    <result column="tch_name" property="tchName" jdbcType="VARCHAR" />
+    <result column="tch_gender" property="tchGender" jdbcType="VARCHAR" />
+    <result column="tch_group" property="tchGroup" jdbcType="VARCHAR" />
+    <result column="tch_contact" property="tchContact" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dk.scorecheckdemo.po.TeacjerPo" extends="BaseResultMap" >
+    <result column="tch_image" property="tchImage" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    tch_id, tch_name, tch_gender, tch_group, tch_contact
+  </sql>
+  <sql id="Blob_Column_List" >
+    tch_image
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dk.scorecheckdemo.po.TeacjerPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dk.scorecheckdemo.po.TeacjerPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_teacher
+    where tch_id = #{tchId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_teacher
+    where tch_id = #{tchId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dk.scorecheckdemo.po.TeacjerPoExample" >
+    delete from tb_teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dk.scorecheckdemo.po.TeacjerPo" >
+    insert into tb_teacher (tch_id, tch_name, tch_gender, 
+      tch_group, tch_contact, tch_image
+      )
+    values (#{tchId,jdbcType=VARCHAR}, #{tchName,jdbcType=VARCHAR}, #{tchGender,jdbcType=VARCHAR}, 
+      #{tchGroup,jdbcType=VARCHAR}, #{tchContact,jdbcType=VARCHAR}, #{tchImage,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dk.scorecheckdemo.po.TeacjerPo" >
+    insert into tb_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tchId != null" >
+        tch_id,
+      </if>
+      <if test="tchName != null" >
+        tch_name,
+      </if>
+      <if test="tchGender != null" >
+        tch_gender,
+      </if>
+      <if test="tchGroup != null" >
+        tch_group,
+      </if>
+      <if test="tchContact != null" >
+        tch_contact,
+      </if>
+      <if test="tchImage != null" >
+        tch_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tchId != null" >
+        #{tchId,jdbcType=VARCHAR},
+      </if>
+      <if test="tchName != null" >
+        #{tchName,jdbcType=VARCHAR},
+      </if>
+      <if test="tchGender != null" >
+        #{tchGender,jdbcType=VARCHAR},
+      </if>
+      <if test="tchGroup != null" >
+        #{tchGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="tchContact != null" >
+        #{tchContact,jdbcType=VARCHAR},
+      </if>
+      <if test="tchImage != null" >
+        #{tchImage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dk.scorecheckdemo.po.TeacjerPoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_teacher
+    <set >
+      <if test="record.tchId != null" >
+        tch_id = #{record.tchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tchName != null" >
+        tch_name = #{record.tchName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tchGender != null" >
+        tch_gender = #{record.tchGender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tchGroup != null" >
+        tch_group = #{record.tchGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tchContact != null" >
+        tch_contact = #{record.tchContact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tchImage != null" >
+        tch_image = #{record.tchImage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_teacher
+    set tch_id = #{record.tchId,jdbcType=VARCHAR},
+      tch_name = #{record.tchName,jdbcType=VARCHAR},
+      tch_gender = #{record.tchGender,jdbcType=VARCHAR},
+      tch_group = #{record.tchGroup,jdbcType=VARCHAR},
+      tch_contact = #{record.tchContact,jdbcType=VARCHAR},
+      tch_image = #{record.tchImage,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_teacher
+    set tch_id = #{record.tchId,jdbcType=VARCHAR},
+      tch_name = #{record.tchName,jdbcType=VARCHAR},
+      tch_gender = #{record.tchGender,jdbcType=VARCHAR},
+      tch_group = #{record.tchGroup,jdbcType=VARCHAR},
+      tch_contact = #{record.tchContact,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dk.scorecheckdemo.po.TeacjerPo" >
+    update tb_teacher
+    <set >
+      <if test="tchName != null" >
+        tch_name = #{tchName,jdbcType=VARCHAR},
+      </if>
+      <if test="tchGender != null" >
+        tch_gender = #{tchGender,jdbcType=VARCHAR},
+      </if>
+      <if test="tchGroup != null" >
+        tch_group = #{tchGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="tchContact != null" >
+        tch_contact = #{tchContact,jdbcType=VARCHAR},
+      </if>
+      <if test="tchImage != null" >
+        tch_image = #{tchImage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where tch_id = #{tchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dk.scorecheckdemo.po.TeacjerPo" >
+    update tb_teacher
+    set tch_name = #{tchName,jdbcType=VARCHAR},
+      tch_gender = #{tchGender,jdbcType=VARCHAR},
+      tch_group = #{tchGroup,jdbcType=VARCHAR},
+      tch_contact = #{tchContact,jdbcType=VARCHAR},
+      tch_image = #{tchImage,jdbcType=LONGVARCHAR}
+    where tch_id = #{tchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dk.scorecheckdemo.po.TeacjerPo" >
+    update tb_teacher
+    set tch_name = #{tchName,jdbcType=VARCHAR},
+      tch_gender = #{tchGender,jdbcType=VARCHAR},
+      tch_group = #{tchGroup,jdbcType=VARCHAR},
+      tch_contact = #{tchContact,jdbcType=VARCHAR}
+    where tch_id = #{tchId,jdbcType=VARCHAR}
+  </update>
+</mapper>

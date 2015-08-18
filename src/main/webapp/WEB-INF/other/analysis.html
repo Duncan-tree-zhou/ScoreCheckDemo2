@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/Chart.js"></script>
+<script src="js/jquery-2.1.4.min.js"></script>
+<!-- Bootstrap core CSS -->
+<link
+	href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="http://v3.bootcss.com/dist/css/bootstrap-theme.min.css"
+	rel="stylesheet">
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Education</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="myHome.html">我的小窝</a></li>
+					<li class="active"><a href="analysis.html">自我分析</a></li>
+					<li><a href="compare.html">知己知彼</a></li>
+					<li class="dropdown"><a href="index.html"
+						class="dropdown-toggle" data-toggle="dropdown" role="button"
+						aria-haspopup="true" aria-expanded="false">其他 <span
+							class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="index.html">1</a></li>
+							<li><a href="index.html">2</a></li>
+							<li><a href="index.html">3</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="index.html">4</a></li>
+							<li><a href="index.html">5</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<ul id="myTabs" class="nav nav-tabs" role="tablist">
+			<li role="presentation"><a id="0" href="#zonghe"
+				data-toggle="tab">综合</a></li>
+			<li role="presentation"><a id="1" href="#shuxue"
+				data-toggle="tab">数学</a></li>
+			<li role="presentation"><a id="2" href="#yuwen"
+				data-toggle="tab">语文</a></li>
+			<li role="presentation"><a id="3" href="#yinyu"
+				data-toggle="tab">英语</a></li>
+			<li role="presentation"><a id="4" href="#wuli" data-toggle="tab">物理</a></li>
+			<li role="presentation"><a id="5" href="#lishi"
+				data-toggle="tab">历史</a></li>
+			<li role="presentation"><a id="6" href="#huaxue"
+				data-toggle="tab">化学</a></li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade" id="zonghe">
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析-综合</h1>
+					</div>
+				</div>
+				<div class="row">
+
+
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">今昔对比</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="TodayHistoryRadar0" width="300"
+									height="300"></canvas>
+
+								<div class="caption">
+									<h3>今昔对比</h3>
+									<p>亮色是今次成绩的雷达图，灰色是平均成绩雷达图，通过此图可以看出自己本次测验中各科成绩与以往成绩的对比。此图可以轻易看出自己的强弱项以及本次测验各科进退步情况。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine0" width="300"
+									height="300"></canvas>
+
+								<div class="caption">
+									<h3>成长走势</h3>
+									<p>本次成绩与年级平均成绩对比得出的浮动，并加上自身成绩平均值的偏移量。此图可以轻易看出历史以来自己进退步情况</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine0" width="300"
+									height="300"></canvas>
+								<div class="caption">
+									<h3>净分走势</h3>
+									<p>净分数历史趋势图。此图可以看出自己分数净值走势情况。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="shuxue">
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析-数学</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine1" width="300"
+									height="300"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine1" width="300"
+									height="300"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">参考数据</h3>
+							</div>
+							<div class="panel-body">
+								
+								<form class="form-horizontal">
+									<div class="form-group">
+										<label for="name" class="col-sm-4 control-label">本次成绩：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="name"
+												placeholder="88" readonly>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="name" class="col-sm-4 control-label">历史平均：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="name"
+												placeholder="78" readonly>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="name" class="col-sm-4 control-label">稳定系数：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="name"
+												placeholder="张丽丽" readonly>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="name" class="col-sm-4 control-label">老师评价：</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="name"
+												placeholder="进步不错，再接再厉！" readonly>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+
+			</div>
+			<div class="tab-pane fade" id="yuwen">
+
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析-语文</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine2" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine2" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+
+
+			</div>
+			<div class="tab-pane fade" id="yinyu">
+
+
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析-英语</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine3" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine3" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="wuli">
+
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析-物理</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine4" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine4" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="lishi">
+
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析--历史</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine5" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine5" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="huaxue">
+
+				<div class="row">
+					<div class="page-header">
+						<h1>自我分析-化学</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">净分走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="NetHistoryLine6" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">成长走势</h3>
+							</div>
+							<div class="panel-body">
+								<canvas class="center-block" id="GrowthHistoryLine6" width="400"
+									height="400"></canvas>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height: 100px;"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+<script src="js/analysis.js"></script>
+</html>

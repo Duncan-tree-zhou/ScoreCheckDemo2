@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.PositionPoMapper" >
+  <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.PositionPo" >
+    <id column="psn_id" property="psnId" jdbcType="VARCHAR" />
+    <result column="psn_name" property="psnName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dk.scorecheckdemo.po.PositionPo" extends="BaseResultMap" >
+    <result column="psn_desc" property="psnDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    psn_id, psn_name
+  </sql>
+  <sql id="Blob_Column_List" >
+    psn_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dk.scorecheckdemo.po.PositionPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dk.scorecheckdemo.po.PositionPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_position
+    where psn_id = #{psnId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_position
+    where psn_id = #{psnId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dk.scorecheckdemo.po.PositionPoExample" >
+    delete from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dk.scorecheckdemo.po.PositionPo" >
+    insert into tb_position (psn_id, psn_name, psn_desc
+      )
+    values (#{psnId,jdbcType=VARCHAR}, #{psnName,jdbcType=VARCHAR}, #{psnDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dk.scorecheckdemo.po.PositionPo" >
+    insert into tb_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="psnId != null" >
+        psn_id,
+      </if>
+      <if test="psnName != null" >
+        psn_name,
+      </if>
+      <if test="psnDesc != null" >
+        psn_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="psnId != null" >
+        #{psnId,jdbcType=VARCHAR},
+      </if>
+      <if test="psnName != null" >
+        #{psnName,jdbcType=VARCHAR},
+      </if>
+      <if test="psnDesc != null" >
+        #{psnDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dk.scorecheckdemo.po.PositionPoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_position
+    <set >
+      <if test="record.psnId != null" >
+        psn_id = #{record.psnId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.psnName != null" >
+        psn_name = #{record.psnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.psnDesc != null" >
+        psn_desc = #{record.psnDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_position
+    set psn_id = #{record.psnId,jdbcType=VARCHAR},
+      psn_name = #{record.psnName,jdbcType=VARCHAR},
+      psn_desc = #{record.psnDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_position
+    set psn_id = #{record.psnId,jdbcType=VARCHAR},
+      psn_name = #{record.psnName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dk.scorecheckdemo.po.PositionPo" >
+    update tb_position
+    <set >
+      <if test="psnName != null" >
+        psn_name = #{psnName,jdbcType=VARCHAR},
+      </if>
+      <if test="psnDesc != null" >
+        psn_desc = #{psnDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where psn_id = #{psnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dk.scorecheckdemo.po.PositionPo" >
+    update tb_position
+    set psn_name = #{psnName,jdbcType=VARCHAR},
+      psn_desc = #{psnDesc,jdbcType=LONGVARCHAR}
+    where psn_id = #{psnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dk.scorecheckdemo.po.PositionPo" >
+    update tb_position
+    set psn_name = #{psnName,jdbcType=VARCHAR}
+    where psn_id = #{psnId,jdbcType=VARCHAR}
+  </update>
+</mapper>

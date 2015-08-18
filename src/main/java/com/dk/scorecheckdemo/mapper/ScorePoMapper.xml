@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.ScorePoMapper" >
+  <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.ScorePo" >
+    <id column="sc_id" property="scId" jdbcType="VARCHAR" />
+    <result column="st_id" property="stId" jdbcType="VARCHAR" />
+    <result column="cs_id" property="csId" jdbcType="VARCHAR" />
+    <result column="sc_name" property="scName" jdbcType="VARCHAR" />
+    <result column="sc_date" property="scDate" jdbcType="DATE" />
+    <result column="sc_score" property="scScore" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sc_id, st_id, cs_id, sc_name, sc_date, sc_score
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dk.scorecheckdemo.po.ScorePoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_score
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_score
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dk.scorecheckdemo.po.ScorePoExample" >
+    delete from tb_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dk.scorecheckdemo.po.ScorePo" >
+    insert into tb_score (sc_id, st_id, cs_id, 
+      sc_name, sc_date, sc_score
+      )
+    values (#{scId,jdbcType=VARCHAR}, #{stId,jdbcType=VARCHAR}, #{csId,jdbcType=VARCHAR}, 
+      #{scName,jdbcType=VARCHAR}, #{scDate,jdbcType=DATE}, #{scScore,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dk.scorecheckdemo.po.ScorePo" >
+    insert into tb_score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scId != null" >
+        sc_id,
+      </if>
+      <if test="stId != null" >
+        st_id,
+      </if>
+      <if test="csId != null" >
+        cs_id,
+      </if>
+      <if test="scName != null" >
+        sc_name,
+      </if>
+      <if test="scDate != null" >
+        sc_date,
+      </if>
+      <if test="scScore != null" >
+        sc_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scId != null" >
+        #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="stId != null" >
+        #{stId,jdbcType=VARCHAR},
+      </if>
+      <if test="csId != null" >
+        #{csId,jdbcType=VARCHAR},
+      </if>
+      <if test="scName != null" >
+        #{scName,jdbcType=VARCHAR},
+      </if>
+      <if test="scDate != null" >
+        #{scDate,jdbcType=DATE},
+      </if>
+      <if test="scScore != null" >
+        #{scScore,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dk.scorecheckdemo.po.ScorePoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_score
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_score
+    <set >
+      <if test="record.scId != null" >
+        sc_id = #{record.scId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stId != null" >
+        st_id = #{record.stId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csId != null" >
+        cs_id = #{record.csId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scName != null" >
+        sc_name = #{record.scName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scDate != null" >
+        sc_date = #{record.scDate,jdbcType=DATE},
+      </if>
+      <if test="record.scScore != null" >
+        sc_score = #{record.scScore,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_score
+    set sc_id = #{record.scId,jdbcType=VARCHAR},
+      st_id = #{record.stId,jdbcType=VARCHAR},
+      cs_id = #{record.csId,jdbcType=VARCHAR},
+      sc_name = #{record.scName,jdbcType=VARCHAR},
+      sc_date = #{record.scDate,jdbcType=DATE},
+      sc_score = #{record.scScore,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dk.scorecheckdemo.po.ScorePo" >
+    update tb_score
+    <set >
+      <if test="stId != null" >
+        st_id = #{stId,jdbcType=VARCHAR},
+      </if>
+      <if test="csId != null" >
+        cs_id = #{csId,jdbcType=VARCHAR},
+      </if>
+      <if test="scName != null" >
+        sc_name = #{scName,jdbcType=VARCHAR},
+      </if>
+      <if test="scDate != null" >
+        sc_date = #{scDate,jdbcType=DATE},
+      </if>
+      <if test="scScore != null" >
+        sc_score = #{scScore,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dk.scorecheckdemo.po.ScorePo" >
+    update tb_score
+    set st_id = #{stId,jdbcType=VARCHAR},
+      cs_id = #{csId,jdbcType=VARCHAR},
+      sc_name = #{scName,jdbcType=VARCHAR},
+      sc_date = #{scDate,jdbcType=DATE},
+      sc_score = #{scScore,jdbcType=DOUBLE}
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </update>
+</mapper>

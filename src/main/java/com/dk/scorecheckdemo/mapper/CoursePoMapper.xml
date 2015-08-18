@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.CoursePoMapper" >
+  <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.CoursePo" >
+    <id column="cos_id" property="cosId" jdbcType="VARCHAR" />
+    <result column="cos_name" property="cosName" jdbcType="VARCHAR" />
+    <result column="cos_type" property="cosType" jdbcType="VARCHAR" />
+    <result column="cosg_id" property="cosgId" jdbcType="VARCHAR" />
+    <result column="cos_credit" property="cosCredit" jdbcType="DOUBLE" />
+    <result column="cos_start" property="cosStart" jdbcType="DATE" />
+    <result column="cos_end" property="cosEnd" jdbcType="DATE" />
+    <result column="tch_id" property="tchId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dk.scorecheckdemo.po.CoursePo" extends="BaseResultMap" >
+    <result column="cos_desc" property="cosDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cos_id, cos_name, cos_type, cosg_id, cos_credit, cos_start, cos_end, tch_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    cos_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dk.scorecheckdemo.po.CoursePoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dk.scorecheckdemo.po.CoursePoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_course
+    where cos_id = #{cosId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_course
+    where cos_id = #{cosId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dk.scorecheckdemo.po.CoursePoExample" >
+    delete from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dk.scorecheckdemo.po.CoursePo" >
+    insert into tb_course (cos_id, cos_name, cos_type, 
+      cosg_id, cos_credit, cos_start, 
+      cos_end, tch_id, cos_desc
+      )
+    values (#{cosId,jdbcType=VARCHAR}, #{cosName,jdbcType=VARCHAR}, #{cosType,jdbcType=VARCHAR}, 
+      #{cosgId,jdbcType=VARCHAR}, #{cosCredit,jdbcType=DOUBLE}, #{cosStart,jdbcType=DATE}, 
+      #{cosEnd,jdbcType=DATE}, #{tchId,jdbcType=VARCHAR}, #{cosDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dk.scorecheckdemo.po.CoursePo" >
+    insert into tb_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cosId != null" >
+        cos_id,
+      </if>
+      <if test="cosName != null" >
+        cos_name,
+      </if>
+      <if test="cosType != null" >
+        cos_type,
+      </if>
+      <if test="cosgId != null" >
+        cosg_id,
+      </if>
+      <if test="cosCredit != null" >
+        cos_credit,
+      </if>
+      <if test="cosStart != null" >
+        cos_start,
+      </if>
+      <if test="cosEnd != null" >
+        cos_end,
+      </if>
+      <if test="tchId != null" >
+        tch_id,
+      </if>
+      <if test="cosDesc != null" >
+        cos_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cosId != null" >
+        #{cosId,jdbcType=VARCHAR},
+      </if>
+      <if test="cosName != null" >
+        #{cosName,jdbcType=VARCHAR},
+      </if>
+      <if test="cosType != null" >
+        #{cosType,jdbcType=VARCHAR},
+      </if>
+      <if test="cosgId != null" >
+        #{cosgId,jdbcType=VARCHAR},
+      </if>
+      <if test="cosCredit != null" >
+        #{cosCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="cosStart != null" >
+        #{cosStart,jdbcType=DATE},
+      </if>
+      <if test="cosEnd != null" >
+        #{cosEnd,jdbcType=DATE},
+      </if>
+      <if test="tchId != null" >
+        #{tchId,jdbcType=VARCHAR},
+      </if>
+      <if test="cosDesc != null" >
+        #{cosDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dk.scorecheckdemo.po.CoursePoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_course
+    <set >
+      <if test="record.cosId != null" >
+        cos_id = #{record.cosId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cosName != null" >
+        cos_name = #{record.cosName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cosType != null" >
+        cos_type = #{record.cosType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cosgId != null" >
+        cosg_id = #{record.cosgId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cosCredit != null" >
+        cos_credit = #{record.cosCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cosStart != null" >
+        cos_start = #{record.cosStart,jdbcType=DATE},
+      </if>
+      <if test="record.cosEnd != null" >
+        cos_end = #{record.cosEnd,jdbcType=DATE},
+      </if>
+      <if test="record.tchId != null" >
+        tch_id = #{record.tchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cosDesc != null" >
+        cos_desc = #{record.cosDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_course
+    set cos_id = #{record.cosId,jdbcType=VARCHAR},
+      cos_name = #{record.cosName,jdbcType=VARCHAR},
+      cos_type = #{record.cosType,jdbcType=VARCHAR},
+      cosg_id = #{record.cosgId,jdbcType=VARCHAR},
+      cos_credit = #{record.cosCredit,jdbcType=DOUBLE},
+      cos_start = #{record.cosStart,jdbcType=DATE},
+      cos_end = #{record.cosEnd,jdbcType=DATE},
+      tch_id = #{record.tchId,jdbcType=VARCHAR},
+      cos_desc = #{record.cosDesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_course
+    set cos_id = #{record.cosId,jdbcType=VARCHAR},
+      cos_name = #{record.cosName,jdbcType=VARCHAR},
+      cos_type = #{record.cosType,jdbcType=VARCHAR},
+      cosg_id = #{record.cosgId,jdbcType=VARCHAR},
+      cos_credit = #{record.cosCredit,jdbcType=DOUBLE},
+      cos_start = #{record.cosStart,jdbcType=DATE},
+      cos_end = #{record.cosEnd,jdbcType=DATE},
+      tch_id = #{record.tchId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dk.scorecheckdemo.po.CoursePo" >
+    update tb_course
+    <set >
+      <if test="cosName != null" >
+        cos_name = #{cosName,jdbcType=VARCHAR},
+      </if>
+      <if test="cosType != null" >
+        cos_type = #{cosType,jdbcType=VARCHAR},
+      </if>
+      <if test="cosgId != null" >
+        cosg_id = #{cosgId,jdbcType=VARCHAR},
+      </if>
+      <if test="cosCredit != null" >
+        cos_credit = #{cosCredit,jdbcType=DOUBLE},
+      </if>
+      <if test="cosStart != null" >
+        cos_start = #{cosStart,jdbcType=DATE},
+      </if>
+      <if test="cosEnd != null" >
+        cos_end = #{cosEnd,jdbcType=DATE},
+      </if>
+      <if test="tchId != null" >
+        tch_id = #{tchId,jdbcType=VARCHAR},
+      </if>
+      <if test="cosDesc != null" >
+        cos_desc = #{cosDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cos_id = #{cosId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dk.scorecheckdemo.po.CoursePo" >
+    update tb_course
+    set cos_name = #{cosName,jdbcType=VARCHAR},
+      cos_type = #{cosType,jdbcType=VARCHAR},
+      cosg_id = #{cosgId,jdbcType=VARCHAR},
+      cos_credit = #{cosCredit,jdbcType=DOUBLE},
+      cos_start = #{cosStart,jdbcType=DATE},
+      cos_end = #{cosEnd,jdbcType=DATE},
+      tch_id = #{tchId,jdbcType=VARCHAR},
+      cos_desc = #{cosDesc,jdbcType=LONGVARCHAR}
+    where cos_id = #{cosId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dk.scorecheckdemo.po.CoursePo" >
+    update tb_course
+    set cos_name = #{cosName,jdbcType=VARCHAR},
+      cos_type = #{cosType,jdbcType=VARCHAR},
+      cosg_id = #{cosgId,jdbcType=VARCHAR},
+      cos_credit = #{cosCredit,jdbcType=DOUBLE},
+      cos_start = #{cosStart,jdbcType=DATE},
+      cos_end = #{cosEnd,jdbcType=DATE},
+      tch_id = #{tchId,jdbcType=VARCHAR}
+    where cos_id = #{cosId,jdbcType=VARCHAR}
+  </update>
+</mapper>

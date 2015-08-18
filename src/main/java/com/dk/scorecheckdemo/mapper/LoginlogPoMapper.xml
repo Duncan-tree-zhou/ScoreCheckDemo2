@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.LoginlogPoMapper" >
+  <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.LoginlogPo" >
+    <id column="llid" property="llid" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="uip" property="uip" jdbcType="VARCHAR" />
+    <result column="loginDate" property="logindate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    llid, uid, uip, loginDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dk.scorecheckdemo.po.LoginlogPoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_loginlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_loginlog
+    where llid = #{llid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_loginlog
+    where llid = #{llid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dk.scorecheckdemo.po.LoginlogPoExample" >
+    delete from tb_loginlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dk.scorecheckdemo.po.LoginlogPo" >
+    insert into tb_loginlog (llid, uid, uip, 
+      loginDate)
+    values (#{llid,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{uip,jdbcType=VARCHAR}, 
+      #{logindate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dk.scorecheckdemo.po.LoginlogPo" >
+    insert into tb_loginlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="llid != null" >
+        llid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="uip != null" >
+        uip,
+      </if>
+      <if test="logindate != null" >
+        loginDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="llid != null" >
+        #{llid,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="uip != null" >
+        #{uip,jdbcType=VARCHAR},
+      </if>
+      <if test="logindate != null" >
+        #{logindate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dk.scorecheckdemo.po.LoginlogPoExample" resultType="java.lang.Integer" >
+    select count(*) from tb_loginlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_loginlog
+    <set >
+      <if test="record.llid != null" >
+        llid = #{record.llid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uip != null" >
+        uip = #{record.uip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logindate != null" >
+        loginDate = #{record.logindate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_loginlog
+    set llid = #{record.llid,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR},
+      uip = #{record.uip,jdbcType=VARCHAR},
+      loginDate = #{record.logindate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dk.scorecheckdemo.po.LoginlogPo" >
+    update tb_loginlog
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="uip != null" >
+        uip = #{uip,jdbcType=VARCHAR},
+      </if>
+      <if test="logindate != null" >
+        loginDate = #{logindate,jdbcType=DATE},
+      </if>
+    </set>
+    where llid = #{llid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dk.scorecheckdemo.po.LoginlogPo" >
+    update tb_loginlog
+    set uid = #{uid,jdbcType=VARCHAR},
+      uip = #{uip,jdbcType=VARCHAR},
+      loginDate = #{logindate,jdbcType=DATE}
+    where llid = #{llid,jdbcType=VARCHAR}
+  </update>
+</mapper>
