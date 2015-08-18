@@ -50,13 +50,5 @@ public class LoginController{
 		}
 		return new ModelAndView("login");
 	}
-	
-/*	
-	@RequestMapping("/main/")
-	public ModelAndView Main(String uname,String upassword,
-			HttpServletRequest request) throws Exception {
-		
-		return new ModelAndView("main");
-	}*/
 
 }

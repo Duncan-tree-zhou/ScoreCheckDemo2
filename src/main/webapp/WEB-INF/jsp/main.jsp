@@ -59,49 +59,49 @@
 										<label for="name" class="col-sm-4 control-label">姓名：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="name"
-												placeholder="张丽丽" readonly>
+												placeholder="${StudentVo.studentPoCustom.stName}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="studentNo" class="col-sm-4 control-label">学号：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="studentNo"
-												placeholder="20070103" readonly>
+												placeholder="${StudentVo.studentPoCustom.stId}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="class" class="col-sm-4 control-label">班级：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="class"
-												placeholder="001" readonly>
+												placeholder="${StudentVo.studentPoCustom.clsDesc}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="phone" class="col-sm-4 control-label">监护人：</label>
 										<div class="col-sm-8">
-											<input type="text" class="form-control" id="phone"
-												placeholder="15133234220" readonly>
+											<input type="text" class="form-control" id="guardian"
+												placeholder="${StudentVo.studentPoCustom.stParentName}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="phone" class="col-sm-4 control-label">电话：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="phone"
-												placeholder="15133234220" readonly>
+												placeholder="${StudentVo.studentPoCustom.stContact}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="master" class="col-sm-4 control-label">班主任：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="master"
-												placeholder="王文祥" readonly>
+												placeholder="${StudentVo.studentPoCustom.tchName}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="mphone" class="col-sm-4 control-label">班主任电话：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="mphone"
-												placeholder="13274635274" readonly>
+												placeholder="${StudentVo.studentPoCustom.tchContact}" readonly>
 										</div>
 									</div>
 								</form>

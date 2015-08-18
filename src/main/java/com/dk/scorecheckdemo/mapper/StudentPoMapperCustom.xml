@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.StudentPoMapperCustom" >
+
+  <resultMap id="StudentPoMapperCustomResultMap" type="com.dk.scorecheckdemo.po.StudentPoCustom" >
+    <id column="st_id" property="stId" jdbcType="VARCHAR" />
+    <result column="st_name" property="stName" jdbcType="VARCHAR" />
+    <result column="st_gender" property="stGender" jdbcType="VARCHAR" />
+    <result column="st_parent_name" property="stParentName" jdbcType="VARCHAR" />
+    <result column="st_contact" property="stContact" jdbcType="VARCHAR" />
+    <result column="cls_desc" property="clsDesc" jdbcType="VARCHAR" />
+    <result column="tch_name" property="tchName" jdbcType="VARCHAR" />
+    <result column="tch_contact" property="tchContact" jdbcType="VARCHAR" />
+    
+  </resultMap>
+
+<select id="getStudentInfo" parameterType="String"
+resultType="com.dk.scorecheckdemo.po.StudentPoCustom">
+	SELECT 
+	std.st_id,std.st_image,std.st_name,
+	std.st_gender,std.st_parent_name,std.st_contact,
+	cls.cls_desc,tch.tch_name,tch.tch_contact
+	 FROM tb_student std 
+	 left join c_st_cls c1 on std.st_id = c1.st_id
+	 left join tb_class cls on c1.c_id = cls.cls_id
+	 left join tb_teacher on cls.tch_id = tch.tch_id
+	 WHERE std.st_id = #{std_id}
+</select>
+
+</mapper>

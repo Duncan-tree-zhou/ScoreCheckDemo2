@@ -6,7 +6,6 @@ public class StudentVo {
 	
 	private StudentPoCustom studentPoCustom;
 	
-	
 	public StudentPo getStudentPo() {
 		return studentPo;
 	}
