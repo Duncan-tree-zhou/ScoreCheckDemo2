@@ -18,28 +18,8 @@ public class UserPo {
     private Date lastVisit;
 
     private String lastIp;
-    
 
-    public UserPo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UserPo(String uid, String uname, String upassword,
-			Integer uprivilege, String uFnId, Integer logCount, Date lastVisit,
-			String lastIp) {
-		super();
-		this.uid = uid;
-		this.uname = uname;
-		this.upassword = upassword;
-		this.uprivilege = uprivilege;
-		this.uFnId = uFnId;
-		this.logCount = logCount;
-		this.lastVisit = lastVisit;
-		this.lastIp = lastIp;
-	}
-
-	public String getUid() {
+    public String getUid() {
         return uid;
     }
 
@@ -80,7 +60,7 @@ public class UserPo {
     }
 
     public Integer getLogCount() {
-        return null==logCount?0:logCount;
+        return logCount;
     }
 
     public void setLogCount(Integer logCount) {

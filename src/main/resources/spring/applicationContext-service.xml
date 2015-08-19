@@ -16,5 +16,7 @@
     ">
     
     <bean id="userService" class="com.dk.scorecheckdemo.service.UserService"/>
+    <bean id="studentService" class="com.dk.scorecheckdemo.service.StudentService"/>
+    <bean id="scoreQueryService" class="com.dk.scorecheckdemo.service.ScoreQueryService"/>
     
     </beans>

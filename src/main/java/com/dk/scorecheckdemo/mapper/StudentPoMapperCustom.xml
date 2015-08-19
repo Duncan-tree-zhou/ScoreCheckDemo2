@@ -11,19 +11,18 @@
     <result column="cls_desc" property="clsDesc" jdbcType="VARCHAR" />
     <result column="tch_name" property="tchName" jdbcType="VARCHAR" />
     <result column="tch_contact" property="tchContact" jdbcType="VARCHAR" />
-    
   </resultMap>
 
 <select id="getStudentInfo" parameterType="String"
-resultType="com.dk.scorecheckdemo.po.StudentPoCustom">
+resultMap="StudentPoMapperCustomResultMap">
 	SELECT 
 	std.st_id,std.st_image,std.st_name,
 	std.st_gender,std.st_parent_name,std.st_contact,
 	cls.cls_desc,tch.tch_name,tch.tch_contact
 	 FROM tb_student std 
 	 left join c_st_cls c1 on std.st_id = c1.st_id
-	 left join tb_class cls on c1.c_id = cls.cls_id
-	 left join tb_teacher on cls.tch_id = tch.tch_id
+	 left join tb_class cls on c1.cls_id = cls.cls_id
+	 left join tb_teacher tch on cls.tch_id = tch.tch_id
 	 WHERE std.st_id = #{std_id}
 </select>
 

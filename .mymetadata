@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="ScoreCheckDemo2"
+  name="ScoreCheckDemo"
   id="myeclipse.1439514752198"
-  context-root="/ScoreCheckDemo2"
+  context-root="/ScoreCheckDemo"
   j2ee-spec="6.0"
-  archive="ScoreCheckDemo2.war">
+  archive="ScoreCheckDemo.war">
   <attributes>
     <attribute name="webrootdir" value="src/main/webapp" />
   </attributes>

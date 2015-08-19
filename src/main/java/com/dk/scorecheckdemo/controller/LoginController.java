@@ -25,12 +25,6 @@ public class LoginController{
 	public ModelAndView Login(String uname,String upassword,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mav = null;
-		UserPo userPo = (UserPo)request.getSession().getAttribute("userPo");
-		if(null!=userPo){
-			mav = new ModelAndView();
-			mav.setViewName("redirect:/main/");
-			return mav;
-		}
 		if(null!=uname&&null!=upassword){
 			boolean isValidUser = userService.hasMatchUser(uname,upassword);
 			if(!isValidUser){
@@ -44,7 +38,7 @@ public class LoginController{
 				user.setLastIp(request.getRemoteAddr());
 				user.setLastVisit(new Date(System.currentTimeMillis()));
 				userService.loginSuccess(user);
-				mav.addObject("userPo",user);
+				request.getSession().setAttribute("userPo",user);
 				return mav;
 			}
 		}

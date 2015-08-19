@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dk.scorecheckdemo.mapper.CoursePoMapperCustom" >
+  <resultMap id="CoursePoMap" type="com.dk.scorecheckdemo.po.CoursePo" >
+    <id column="cos_id" property="cosId" jdbcType="VARCHAR" />
+    <result column="cos_name" property="cosName" jdbcType="VARCHAR" />
+    <result column="cos_type" property="cosType" jdbcType="VARCHAR" />
+    <result column="cosg_id" property="cosgId" jdbcType="VARCHAR" />
+    <result column="cos_credit" property="cosCredit" jdbcType="DOUBLE" />
+    <result column="cos_start" property="cosStart" jdbcType="DATE" />
+    <result column="cos_end" property="cosEnd" jdbcType="DATE" />
+    <result column="tch_id" property="tchId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="CourseGrpMap" type="com.dk.scorecheckdemo.po.CourseGrpPo" >
+    <id column="cosg_id" property="cosgId" jdbcType="VARCHAR" />
+    <result column="cosg_name" property="cosgName" jdbcType="VARCHAR" />
+    <result column="cos_start" property="cosStart" jdbcType="DATE" />
+    <result column="cos_end" property="cosEnd" jdbcType="DATE" />
+  </resultMap>
+  
+  <select id="findCourseList" parameterType="String"
+  resultMap="CoursePoMap">
+  select distinct cos.* from tb_course cos,c_st_cos c1 where c1.st_id=#{std_id} and c1.cs_id=cos.cos_id
+  </select>
+  
+  <select id="findCourseGrpList" parameterType="String" resultMap="CourseGrpMap">
+  select distinct cosg.* from tb_course_group cosg,tb_course cos,c_st_cos c1 
+  where c1.st_id=#{std_id} 
+  and c1.cs_id=cos.cos_id 
+  and cos.cosg_id = cosg.cosg_id
+  </select>
+  
+</mapper>

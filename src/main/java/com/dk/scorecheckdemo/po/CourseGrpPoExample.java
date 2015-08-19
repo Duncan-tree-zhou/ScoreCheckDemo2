@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class ClassPoExample {
+public class CourseGrpPoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ClassPoExample() {
+    public CourseGrpPoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -132,333 +132,263 @@ public class ClassPoExample {
             addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
-        public Criteria andClsIdIsNull() {
-            addCriterion("cls_id is null");
+        public Criteria andCosgIdIsNull() {
+            addCriterion("cosg_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdIsNotNull() {
-            addCriterion("cls_id is not null");
+        public Criteria andCosgIdIsNotNull() {
+            addCriterion("cosg_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdEqualTo(String value) {
-            addCriterion("cls_id =", value, "clsId");
+        public Criteria andCosgIdEqualTo(String value) {
+            addCriterion("cosg_id =", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdNotEqualTo(String value) {
-            addCriterion("cls_id <>", value, "clsId");
+        public Criteria andCosgIdNotEqualTo(String value) {
+            addCriterion("cosg_id <>", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdGreaterThan(String value) {
-            addCriterion("cls_id >", value, "clsId");
+        public Criteria andCosgIdGreaterThan(String value) {
+            addCriterion("cosg_id >", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdGreaterThanOrEqualTo(String value) {
-            addCriterion("cls_id >=", value, "clsId");
+        public Criteria andCosgIdGreaterThanOrEqualTo(String value) {
+            addCriterion("cosg_id >=", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdLessThan(String value) {
-            addCriterion("cls_id <", value, "clsId");
+        public Criteria andCosgIdLessThan(String value) {
+            addCriterion("cosg_id <", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdLessThanOrEqualTo(String value) {
-            addCriterion("cls_id <=", value, "clsId");
+        public Criteria andCosgIdLessThanOrEqualTo(String value) {
+            addCriterion("cosg_id <=", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdLike(String value) {
-            addCriterion("cls_id like", value, "clsId");
+        public Criteria andCosgIdLike(String value) {
+            addCriterion("cosg_id like", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdNotLike(String value) {
-            addCriterion("cls_id not like", value, "clsId");
+        public Criteria andCosgIdNotLike(String value) {
+            addCriterion("cosg_id not like", value, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdIn(List<String> values) {
-            addCriterion("cls_id in", values, "clsId");
+        public Criteria andCosgIdIn(List<String> values) {
+            addCriterion("cosg_id in", values, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdNotIn(List<String> values) {
-            addCriterion("cls_id not in", values, "clsId");
+        public Criteria andCosgIdNotIn(List<String> values) {
+            addCriterion("cosg_id not in", values, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdBetween(String value1, String value2) {
-            addCriterion("cls_id between", value1, value2, "clsId");
+        public Criteria andCosgIdBetween(String value1, String value2) {
+            addCriterion("cosg_id between", value1, value2, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andClsIdNotBetween(String value1, String value2) {
-            addCriterion("cls_id not between", value1, value2, "clsId");
+        public Criteria andCosgIdNotBetween(String value1, String value2) {
+            addCriterion("cosg_id not between", value1, value2, "cosgId");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdIsNull() {
-            addCriterion("tch_id is null");
+        public Criteria andCosgNameIsNull() {
+            addCriterion("cosg_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdIsNotNull() {
-            addCriterion("tch_id is not null");
+        public Criteria andCosgNameIsNotNull() {
+            addCriterion("cosg_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdEqualTo(String value) {
-            addCriterion("tch_id =", value, "tchId");
+        public Criteria andCosgNameEqualTo(String value) {
+            addCriterion("cosg_name =", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdNotEqualTo(String value) {
-            addCriterion("tch_id <>", value, "tchId");
+        public Criteria andCosgNameNotEqualTo(String value) {
+            addCriterion("cosg_name <>", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdGreaterThan(String value) {
-            addCriterion("tch_id >", value, "tchId");
+        public Criteria andCosgNameGreaterThan(String value) {
+            addCriterion("cosg_name >", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdGreaterThanOrEqualTo(String value) {
-            addCriterion("tch_id >=", value, "tchId");
+        public Criteria andCosgNameGreaterThanOrEqualTo(String value) {
+            addCriterion("cosg_name >=", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdLessThan(String value) {
-            addCriterion("tch_id <", value, "tchId");
+        public Criteria andCosgNameLessThan(String value) {
+            addCriterion("cosg_name <", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdLessThanOrEqualTo(String value) {
-            addCriterion("tch_id <=", value, "tchId");
+        public Criteria andCosgNameLessThanOrEqualTo(String value) {
+            addCriterion("cosg_name <=", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdLike(String value) {
-            addCriterion("tch_id like", value, "tchId");
+        public Criteria andCosgNameLike(String value) {
+            addCriterion("cosg_name like", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdNotLike(String value) {
-            addCriterion("tch_id not like", value, "tchId");
+        public Criteria andCosgNameNotLike(String value) {
+            addCriterion("cosg_name not like", value, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdIn(List<String> values) {
-            addCriterion("tch_id in", values, "tchId");
+        public Criteria andCosgNameIn(List<String> values) {
+            addCriterion("cosg_name in", values, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdNotIn(List<String> values) {
-            addCriterion("tch_id not in", values, "tchId");
+        public Criteria andCosgNameNotIn(List<String> values) {
+            addCriterion("cosg_name not in", values, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdBetween(String value1, String value2) {
-            addCriterion("tch_id between", value1, value2, "tchId");
+        public Criteria andCosgNameBetween(String value1, String value2) {
+            addCriterion("cosg_name between", value1, value2, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andTchIdNotBetween(String value1, String value2) {
-            addCriterion("tch_id not between", value1, value2, "tchId");
+        public Criteria andCosgNameNotBetween(String value1, String value2) {
+            addCriterion("cosg_name not between", value1, value2, "cosgName");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartIsNull() {
-            addCriterion("cls_start is null");
+        public Criteria andCosStartIsNull() {
+            addCriterion("cos_start is null");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartIsNotNull() {
-            addCriterion("cls_start is not null");
+        public Criteria andCosStartIsNotNull() {
+            addCriterion("cos_start is not null");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_start =", value, "clsStart");
+        public Criteria andCosStartEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_start =", value, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartNotEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_start <>", value, "clsStart");
+        public Criteria andCosStartNotEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_start <>", value, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartGreaterThan(Date value) {
-            addCriterionForJDBCDate("cls_start >", value, "clsStart");
+        public Criteria andCosStartGreaterThan(Date value) {
+            addCriterionForJDBCDate("cos_start >", value, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_start >=", value, "clsStart");
+        public Criteria andCosStartGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_start >=", value, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartLessThan(Date value) {
-            addCriterionForJDBCDate("cls_start <", value, "clsStart");
+        public Criteria andCosStartLessThan(Date value) {
+            addCriterionForJDBCDate("cos_start <", value, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_start <=", value, "clsStart");
+        public Criteria andCosStartLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_start <=", value, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartIn(List<Date> values) {
-            addCriterionForJDBCDate("cls_start in", values, "clsStart");
+        public Criteria andCosStartIn(List<Date> values) {
+            addCriterionForJDBCDate("cos_start in", values, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartNotIn(List<Date> values) {
-            addCriterionForJDBCDate("cls_start not in", values, "clsStart");
+        public Criteria andCosStartNotIn(List<Date> values) {
+            addCriterionForJDBCDate("cos_start not in", values, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("cls_start between", value1, value2, "clsStart");
+        public Criteria andCosStartBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("cos_start between", value1, value2, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsStartNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("cls_start not between", value1, value2, "clsStart");
+        public Criteria andCosStartNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("cos_start not between", value1, value2, "cosStart");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndIsNull() {
-            addCriterion("cls_end is null");
+        public Criteria andCosEndIsNull() {
+            addCriterion("cos_end is null");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndIsNotNull() {
-            addCriterion("cls_end is not null");
+        public Criteria andCosEndIsNotNull() {
+            addCriterion("cos_end is not null");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_end =", value, "clsEnd");
+        public Criteria andCosEndEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_end =", value, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndNotEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_end <>", value, "clsEnd");
+        public Criteria andCosEndNotEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_end <>", value, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndGreaterThan(Date value) {
-            addCriterionForJDBCDate("cls_end >", value, "clsEnd");
+        public Criteria andCosEndGreaterThan(Date value) {
+            addCriterionForJDBCDate("cos_end >", value, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_end >=", value, "clsEnd");
+        public Criteria andCosEndGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_end >=", value, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndLessThan(Date value) {
-            addCriterionForJDBCDate("cls_end <", value, "clsEnd");
+        public Criteria andCosEndLessThan(Date value) {
+            addCriterionForJDBCDate("cos_end <", value, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("cls_end <=", value, "clsEnd");
+        public Criteria andCosEndLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("cos_end <=", value, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndIn(List<Date> values) {
-            addCriterionForJDBCDate("cls_end in", values, "clsEnd");
+        public Criteria andCosEndIn(List<Date> values) {
+            addCriterionForJDBCDate("cos_end in", values, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndNotIn(List<Date> values) {
-            addCriterionForJDBCDate("cls_end not in", values, "clsEnd");
+        public Criteria andCosEndNotIn(List<Date> values) {
+            addCriterionForJDBCDate("cos_end not in", values, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("cls_end between", value1, value2, "clsEnd");
+        public Criteria andCosEndBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("cos_end between", value1, value2, "cosEnd");
             return (Criteria) this;
         }
 
-        public Criteria andClsEndNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("cls_end not between", value1, value2, "clsEnd");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeIsNull() {
-            addCriterion("cls_type is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeIsNotNull() {
-            addCriterion("cls_type is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeEqualTo(String value) {
-            addCriterion("cls_type =", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeNotEqualTo(String value) {
-            addCriterion("cls_type <>", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeGreaterThan(String value) {
-            addCriterion("cls_type >", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("cls_type >=", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeLessThan(String value) {
-            addCriterion("cls_type <", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeLessThanOrEqualTo(String value) {
-            addCriterion("cls_type <=", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeLike(String value) {
-            addCriterion("cls_type like", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeNotLike(String value) {
-            addCriterion("cls_type not like", value, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeIn(List<String> values) {
-            addCriterion("cls_type in", values, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeNotIn(List<String> values) {
-            addCriterion("cls_type not in", values, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeBetween(String value1, String value2) {
-            addCriterion("cls_type between", value1, value2, "clsType");
-            return (Criteria) this;
-        }
-
-        public Criteria andClsTypeNotBetween(String value1, String value2) {
-            addCriterion("cls_type not between", value1, value2, "clsType");
+        public Criteria andCosEndNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("cos_end not between", value1, value2, "cosEnd");
             return (Criteria) this;
         }
     }

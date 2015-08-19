@@ -3,6 +3,7 @@
 <mapper namespace="com.dk.scorecheckdemo.mapper.ClassPoMapper" >
   <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.ClassPo" >
     <result column="cls_id" property="clsId" jdbcType="VARCHAR" />
+    <result column="tch_id" property="tchId" jdbcType="VARCHAR" />
     <result column="cls_start" property="clsStart" jdbcType="DATE" />
     <result column="cls_end" property="clsEnd" jdbcType="DATE" />
     <result column="cls_type" property="clsType" jdbcType="VARCHAR" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    cls_id, cls_start, cls_end, cls_type
+    cls_id, tch_id, cls_start, cls_end, cls_type
   </sql>
   <sql id="Blob_Column_List" >
     cls_desc
@@ -111,16 +112,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.dk.scorecheckdemo.po.ClassPo" >
-    insert into tb_class (cls_id, cls_start, cls_end, 
-      cls_type, cls_desc)
-    values (#{clsId,jdbcType=VARCHAR}, #{clsStart,jdbcType=DATE}, #{clsEnd,jdbcType=DATE}, 
-      #{clsType,jdbcType=VARCHAR}, #{clsDesc,jdbcType=LONGVARCHAR})
+    insert into tb_class (cls_id, tch_id, cls_start, 
+      cls_end, cls_type, cls_desc
+      )
+    values (#{clsId,jdbcType=VARCHAR}, #{tchId,jdbcType=VARCHAR}, #{clsStart,jdbcType=DATE}, 
+      #{clsEnd,jdbcType=DATE}, #{clsType,jdbcType=VARCHAR}, #{clsDesc,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.dk.scorecheckdemo.po.ClassPo" >
     insert into tb_class
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="clsId != null" >
         cls_id,
+      </if>
+      <if test="tchId != null" >
+        tch_id,
       </if>
       <if test="clsStart != null" >
         cls_start,
@@ -138,6 +144,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="clsId != null" >
         #{clsId,jdbcType=VARCHAR},
+      </if>
+      <if test="tchId != null" >
+        #{tchId,jdbcType=VARCHAR},
       </if>
       <if test="clsStart != null" >
         #{clsStart,jdbcType=DATE},
@@ -165,6 +174,9 @@
       <if test="record.clsId != null" >
         cls_id = #{record.clsId,jdbcType=VARCHAR},
       </if>
+      <if test="record.tchId != null" >
+        tch_id = #{record.tchId,jdbcType=VARCHAR},
+      </if>
       <if test="record.clsStart != null" >
         cls_start = #{record.clsStart,jdbcType=DATE},
       </if>
@@ -185,6 +197,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update tb_class
     set cls_id = #{record.clsId,jdbcType=VARCHAR},
+      tch_id = #{record.tchId,jdbcType=VARCHAR},
       cls_start = #{record.clsStart,jdbcType=DATE},
       cls_end = #{record.clsEnd,jdbcType=DATE},
       cls_type = #{record.clsType,jdbcType=VARCHAR},
@@ -196,6 +209,7 @@
   <update id="updateByExample" parameterType="map" >
     update tb_class
     set cls_id = #{record.clsId,jdbcType=VARCHAR},
+      tch_id = #{record.tchId,jdbcType=VARCHAR},
       cls_start = #{record.clsStart,jdbcType=DATE},
       cls_end = #{record.clsEnd,jdbcType=DATE},
       cls_type = #{record.clsType,jdbcType=VARCHAR}

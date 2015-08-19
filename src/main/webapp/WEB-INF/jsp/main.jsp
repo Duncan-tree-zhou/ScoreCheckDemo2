@@ -59,49 +59,49 @@
 										<label for="name" class="col-sm-4 control-label">姓名：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="name"
-												placeholder="${StudentVo.studentPoCustom.stName}" readonly>
+												placeholder="${studentVo.studentPoCustom.stName}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="studentNo" class="col-sm-4 control-label">学号：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="studentNo"
-												placeholder="${StudentVo.studentPoCustom.stId}" readonly>
+												placeholder="${studentVo.studentPoCustom.stId}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="class" class="col-sm-4 control-label">班级：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="class"
-												placeholder="${StudentVo.studentPoCustom.clsDesc}" readonly>
+												placeholder="${studentVo.studentPoCustom.clsDesc}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="phone" class="col-sm-4 control-label">监护人：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="guardian"
-												placeholder="${StudentVo.studentPoCustom.stParentName}" readonly>
+												placeholder="${studentVo.studentPoCustom.stParentName}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="phone" class="col-sm-4 control-label">电话：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="phone"
-												placeholder="${StudentVo.studentPoCustom.stContact}" readonly>
+												placeholder="${studentVo.studentPoCustom.stContact}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="master" class="col-sm-4 control-label">班主任：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="master"
-												placeholder="${StudentVo.studentPoCustom.tchName}" readonly>
+												placeholder="${studentVo.studentPoCustom.tchName}" readonly>
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="mphone" class="col-sm-4 control-label">班主任电话：</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" id="mphone"
-												placeholder="${StudentVo.studentPoCustom.tchContact}" readonly>
+												placeholder="${studentVo.studentPoCustom.tchContact}" readonly>
 										</div>
 									</div>
 								</form>
@@ -119,13 +119,14 @@
 							<div class="panel-body">
 								<div class="table-responsive">
 
-									<form>
+									<form method="post" action="<%=basePath%>main/queryScore/">
 										<div class="row">
 											<div class="form-group col-md-6">
-
+	
 												<label for="exampleInputFile">模糊匹配考试名目</label> <input
-													type="email" class="form-control" id="exampleInputEmail1"
-													placeholder="输入关键词">
+													type="text" class="form-control" id="exampleInputEmail1"
+													placeholder="输入关键词" value="${scoreVo.scorePoCustom.scName }"
+													 name="scorePoCustom.scName">
 
 											</div>
 											<div class="form-group col-md-6">
@@ -137,19 +138,24 @@
 										</div>
 										<div class="row">
 											<div class="form-group col-md-6">
-												<label for="exampleInputEmail1">课程组</label> <select
-													class="form-control">
-													<option>所有</option>
-													<option>2014级语文</option>
-													<option>2014级数学</option>
+												<label for="exampleInput1">课程组</label> <select
+													class="form-control" name="scorePoCustom.cosgName">
+													<option value="">所有</option>
+													<c:forEach items="${courseGrpPoL }" var="coursegrp">
+														<option value="${coursegrp.cosgName }" >${coursegrp.cosgName }</option>
+													<%-- <c:if ${coursegrp.cosgName }==${scorePoCustom.cosgName }> selected="true" </c:if> --%>
+													</c:forEach>
 												</select>
 											</div>
 											<div class="form-group col-md-6">
-												<label for="exampleInputPassword1">课程</label> <select
-													class="form-control">
-													<option>所有</option>
-													<option>语文</option>
-													<option>数学</option>
+												<label for="exampleInput2">课程</label> 
+												<select
+													class="form-control" name="scorePoCustom.cosName">
+													<option value="">所有</option>
+													<c:forEach items="${coursePoL }" var="course">
+														<option value="${course.cosName }"  >${course.cosName }</option>
+														<%-- <c:if ${course.cosName }==${scorePoCustom.cosName }>selected="true" </c:if> --%>
+													</c:forEach>
 												</select>
 											</div>
 										</div>
@@ -160,8 +166,8 @@
 												<div class="input-group date form_date " data-date=""
 													data-date-format="yyyy MM dd" data-link-field="dtp_input2"
 													data-link-format="yyyy-mm-dd">
-													<input class="form-control" size="16" type="text" value=""
-														readonly> <span class="input-group-addon"><span
+													<input class="form-control" size="16" type="text" value="${scoreVo.scorePoCustom.startDate }"
+														readonly name="scorePoCustom.startDate"> <span class="input-group-addon"><span
 														class="glyphicon glyphicon-remove"></span> </span> <span
 														class="input-group-addon"><span
 														class="glyphicon glyphicon-calendar"></span> </span>
@@ -174,8 +180,8 @@
 												<div class="input-group date form_date " data-date=""
 													data-date-format="yyyy MM dd" data-link-field="dtp_input2"
 													data-link-format="yyyy-mm-dd">
-													<input class="form-control" size="16" type="text" value=""
-														readonly> <span class="input-group-addon"><span
+													<input class="form-control" size="16" type="text" value="${scoreVo.scorePoCustom.endDate }"
+														readonly name="scorePoCustom.startDate"> <span class="input-group-addon"><span
 														class="glyphicon glyphicon-remove"></span> </span> <span
 														class="input-group-addon"><span
 														class="glyphicon glyphicon-calendar"></span> </span>
@@ -207,17 +213,20 @@
 												<th>任课老师</th>
 												<th>名目</th>
 												<th>分数</th>
+												<th>日期</th>
 												<th>自我分析</th>
 												<th>知己知彼</th>
 											</tr>
 										</thead>
 										<tbody>
+										<c:forEach items="${scorePoCustomL }" var="score">
 											<tr>
-												<td>2014级数学</td>
-												<td>数学</td>
-												<td>刘独秀</td>
-												<td>第1次测验</td>
-												<td>89</td>
+												<td>${score.cosgName }</td>
+												<td>${score.cosName }</td>
+												<td>${score.tchName }</td>
+												<td>${score.scName }</td>
+												<td><fmt:formatDate  value="${score.scDate }"  pattern="yyyy-MM-dd" /></td>
+												<td>${score.scScore }</td>
 												<td><button
 														onclick="window.location.href='analysis.html?tabNo=1'"
 														type="button" class="btn btn-default">自我分析</button></td>
@@ -225,19 +234,7 @@
 														onclick="window.location.href='analysis.html?tabNo=1'"
 														type="button" class="btn btn-default">自我分析</button></td>
 											</tr>
-											<tr>
-												<td>2014级数学</td>
-												<td>数学</td>
-												<td>刘独秀</td>
-												<td>第1次测验</td>
-												<td>89</td>
-												<td><button
-														onclick="window.location.href='analysis.html?tabNo=1'"
-														type="button" class="btn btn-default">自我分析</button></td>
-												<td><button
-														onclick="window.location.href='analysis.html?tabNo=1'"
-														type="button" class="btn btn-default">自我分析</button></td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>

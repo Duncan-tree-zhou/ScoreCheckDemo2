@@ -1,25 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dk.scorecheckdemo.mapper.ScorePoMapper" >
-<!--   <resultMap id="BaseResultMap" type="com.dk.scorecheckdemo.po.ScorePo" >
-    <id column="sc_id" property="scId" jdbcType="VARCHAR" />
-    <result column="st_id" property="stId" jdbcType="VARCHAR" />
-    <result column="cs_id" property="csId" jdbcType="VARCHAR" />
-    <result column="sc_name" property="scName" jdbcType="VARCHAR" />
-    <result column="sc_date" property="scDate" jdbcType="DATE" />
-    <result column="sc_score" property="scScore" jdbcType="DOUBLE" />
-  </resultMap>
-  
-<select id="getScoreInfo" parameterType="com.dk.scorecheckdemo.po.ScoreVo"
-resultType="com.dk.scorecheckdemo.po.ScorePoCustom">
-	SELECT 
-	std.st_id,std.st_image,std.st_name,
-	std.st_gender,std.st_parent_name,std.st_contact,
-	cls.cls_desc,tch.tch_name,tch.tch_contact
-	 FROM tb_student std 
-	 left join c_st_cls c1 on std.st_id = c1.st_id
-	 left join tb_class cls on c1.c_id = cls.cls_id
-	 left join tb_teacher on cls.tch_id = tch.tch_id
-	 WHERE std.st_id = #{std_id}
-</select> -->
- </mapper>
+<mapper namespace="com.dk.scorecheckdemo.mapper.ScorePoMapperCustom">
+	<resultMap id="ScorePoCustomMap" type="com.dk.scorecheckdemo.po.ScorePoCustom">
+		<id column="sc_id" property="scId" jdbcType="VARCHAR" />
+		<result column="st_id" property="stId" jdbcType="VARCHAR" />
+		<result column="cs_id" property="csId" jdbcType="VARCHAR" />
+		<result column="sc_name" property="scName" jdbcType="VARCHAR" />
+		<result column="sc_date" property="scDate" jdbcType="DATE" />
+		<result column="sc_score" property="scScore" jdbcType="DOUBLE" />
+		<result column="sc_name" property="scName" jdbcType="VARCHAR" />
+		<result column="cosg_name" property="cosgName" jdbcType="VARCHAR" />
+		<result column="cos_name" property="cosName" jdbcType="VARCHAR" />
+		<result column="tch_name" property="tchName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="query_score_where">
+		<if test="null!=scorePoCustom">
+			<if test="null!=scorePoCustom.stId and ''!=scorePoCustom.stId">
+				sc.st_id = #{scorePoCustom.stId}
+			</if>
+			<if test="null!=scorePoCustom.scName and ''!=scorePoCustom.scName">
+				and sc.sc_name like '%${scorePoCustom.scName}%'
+			</if>
+			<if test="null!=scorePoCustom.cosgName and ''!=scorePoCustom.cosgName">
+				and cosg.cosg_name = #{scorePoCustom.cosgName}
+			</if>
+			<if test="null!=scorePoCustom.cosName and ''!=scorePoCustom.cosName">
+				and cos.cos_name = #{scorePoCustom.cosName}
+			</if>
+			<if test="null!=scorePoCustom.startDate">
+				<![CDATA[and unix_timestamp(sc.sc_date) >=
+				unix_timestamp(#{scorePoCustom.startDate})]]>
+			</if>
+ 			<if test="null!=scorePoCustom.endDate">
+				<![CDATA[and unix_timestamp(sc.sc_date) <=
+				unix_timestamp(#{scorePoCustom.endDate})]]>
+			</if>
+		</if>
+	</sql>
+
+	<select id="findScoreList" parameterType="com.dk.scorecheckdemo.po.ScoreVo"
+		resultMap="ScorePoCustomMap">
+		select cosg.cosg_name,cos.cos_name,tch.tch_name,sc.*
+		from tb_score sc left join tb_course cos on(sc.cs_id = cos.cos_id)
+		left join tb_course_group cosg on(cos.cosg_id = cosg.cosg_id)
+		left join tb_teacher tch on(cos.tch_id = tch.tch_id)
+		<where>
+			<include refid="query_score_where"></include>
+		</where>
+		order by sc.sc_date desc
+	</select>
+</mapper>

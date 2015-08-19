@@ -5,6 +5,8 @@ import java.util.Date;
 public class ClassPo {
     private String clsId;
 
+    private String tchId;
+
     private Date clsStart;
 
     private Date clsEnd;
@@ -19,6 +21,14 @@ public class ClassPo {
 
     public void setClsId(String clsId) {
         this.clsId = clsId == null ? null : clsId.trim();
+    }
+
+    public String getTchId() {
+        return tchId;
+    }
+
+    public void setTchId(String tchId) {
+        this.tchId = tchId == null ? null : tchId.trim();
     }
 
     public Date getClsStart() {
